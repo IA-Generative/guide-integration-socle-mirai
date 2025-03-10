@@ -1,0 +1,642 @@
+****![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXfW2hyEjxNPxcTZuA38pGrfXsWS_US5lCCY5VxlwFgUrf4IZDD_ZE_siyJwnK4D0ezHQ1nNkCLASOljQ7nIdCQn4PzYbNCo00FiMu4J-PYcyCVA6ZryUNzK_N1fuocy4EqKOdlZgg?key=b5LEjWR8fgqOkh2r0YLPCgtk)**** 
+
+ ****
+
+|                                                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------- |
+| **Guide d’intégration pour les application et****Cadre de Cohérence Technique (CCT)****_Volet  : MIRAI_** _à portée ministérielle_ |
+
+ ****![@IA-Generative](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeEJfl2tub6oBgqpLUKyN3viQIpWCzg1xlkKu988H8RboBe1lPg-Fb7CGeHYTDBmqlO4UWl6S8q3QQMPZorpS7N0PCV4MH_imgHcQvuqPW5Ot7O_EobZCcWjgGiZOx5y5BO2wrVWA?key=b5LEjWR8fgqOkh2r0YLPCgtk)![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeRNidgSYVxZMa9MCtkpLMopx1AkHRKul2loZ-0M7tpYA4KDw2TMjVbOTd6NQYD31Cp00mLX-5oMb6vAHCDZ-JhGgVQQss648yHo7K_949HmOxXkeFehv2lkucu59EmYZSFFf0Xow?key=b5LEjWR8fgqOkh2r0YLPCgtk)
+
+ ****
+
+\
+\
+
+
+**Version :** en cours d’initialisation
+
+**Date :** 10/03/2025
+
+**Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur et des Outre-Mer.
+
+\
+\
+\
+\
+
+
+**A propos de l’appel à commentaire de ce document.**
+
+**Ce même document est disponible sur le repository GitHub** 
+
+**de la direction du numérique du MI :**
+
+[**https://github.com/IA-Generative/CCT-Mirai**](https://github.com/IA-Generative/CCT-Mirai)
+
+Vous pouvez remonter vos commentaires et suggestions sur ce document de plusieurs manières:
+
+- 1/ utiliser le fichier de relecture proposé[ Fichier pour commentaires](https://github.com/dnum-mi/CCT-Cloud-Native/blob/main/gabarit-pour-commentaires.ods):
+
+  - https\://github.com/dnum-mi/CCT-Cloud-Native/blob/main/gabarit-pour-commentaires.ods
+
+  - et l’envoyer à : <dnum-architecture-entreprise@interieur.gouv.fr>
+
+- 2/ enregistrer des issues dans github
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+TABLE DES MATIÈRES
+
+\
+\
+\
+
+
+[**1 - Introduction ****5**](#1---introduction)
+
+[**2 - Le contexte, les enjeux, la vision ****6**](#2---le-contexte-les-enjeux-la-vision)
+
+[3 - Principes généraux cadre Cloud Native 9](#3---principes-généraux-de-mirai)
+
+[Périmètres du CCT et configurations prises en compte 10](#périmètres-du-document-et-configurations-prises-en-compte)
+
+[Gestion des non-conformités, dérogations et contribution 11](#gestion-des-non-conformités-dérogations-et-contribution)
+
+[Le modèle organisationnel, de responsabilité et de collaboration Cloud Native 12](#le-modèle-organisationnel-de-responsabilité-et-de-collaboration-cloud-native)
+
+[Préconisations générales d’architecture et technique 17](#préconisations-générales-darchitecture-et-technique)
+
+[Des spécificités à prendre en compte sur la création des conteneurs 18](#spécificités-à-prendre-en-compte-sur-la-création-des-applications-devant-sintégrer-dans-le-cadre-du-socle-mirai)
+
+[Des spécificités à prendre en compte sur la topologie réseau et les ouvertures de flux 19](https://docs.google.com/document/d/1cSOWtKtzyFd3NtcUtwXcc_U_M6GlziLRyGE5yRXiJvc/edit#heading=h.pg8h6fjyikn3)
+
+[Des spécificités à prendre en compte autour de la qualité et de la sécurité des applications 19](#spécificités-à-prendre-en-compte-autour-de-la-qualité-et-de-la-sécurité-des-applications)
+
+[Modèle d’intégration d’une application dans le cadre Cloud Native 20](#modèle-dintégration-dune-application-dans-le-cadre-de-mira)
+
+[**4 - Présentation de l’offre interMinistérielle Cloud Pi Native et de ses évolutions pressenties ****21**](#4---présentation-du-socle-mirai-ses-évolutions-pressenties)
+
+[Les magasins de composants kubernetes et d’image de base 22](#les-magasins-de-composants-kubernetes-et-dimage-de-base)
+
+[**6 - Introduction à l’offre de service du ministère ****23**](#6---introduction-à-loffre-de-service-du-ministère)
+
+[**5 - Référentiel d’exigences et modalités d'usage ****24**](#5---référentiel-dexigences-et-modalités-dusage)
+
+[**6 -  Annexes ****26**](#6---annexes)
+
+[Les normes industrielles, institutionnelles applicables 26](#les-normes-industrielles-institutionnelles-applicables)
+
+[Liens vers autres contenus utiles(informatif) 27](#liens-vers-autres-contenus-utilesinformatif)
+
+[Glossaire 28](#glossaire)
+
+[**7 - Référentiel d’exigences applicables au CCT Cloud Pi Native ****37**](#7---référentiel-dexigences-applicables-aux-applications-mirai)
+
+
+##
+
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+
+\--- page vide ---
+
+
+##
+
+# 1 - Introduction
+
+Ce présent volet, du guide d’intégration pour les applications et cadre de cohérence technique couvre le produit Mirai d’IA du quotidien du ministère de l’Interieur.
+
+Ce document s’adresse aux développeurs, architectes et en général aux acteurs se projetant dans la planification, l’élaboration et la maintenance de produits numériques devant s'intégrer dans l’écosystème Mirai.
+
+Il présente le cadre et les exigences qui permettent à une direction d’application de faciliter la construction d’application de qualité et l’accès à l’offre de service proposée. 
+
+Ce document et les ressources associées à pour objectif de : 
+
+- guider les concepteurs d’applications afin d’optimiser les architectures produites selon des normes industrielles rigoureuses, tout en maintenant une capacité d’innovation ;
+
+- mettre à disposition un référentiel d’exigences favorisant les bonnes pratiques et la conformité ;
+
+- diminuer ressources consommées ( financière, RH, énergétique) par la réduction de la  quantité de code à produire et la modularité et l’efficience des architecture applicatives, la rationalisation des composants utilisés et surtout en optimisant les ressources de calcul utilisées ;
+
+- de s’assurer de la compatibilité avec la solution d’hébergement Cloud Pi Native ;
+
+- Prendre en compte les spécificités liés fluidifier les déploiement, l’homologation en continu, le maintien en qualité ;
+
+-
+
+- mettre en place un modèle de responsabilité et de collaboration adapté ;
+
+- disposer d’une trajectoire soutenable pour ceux en charge de maintenir l’offre.
+
+Le lecteur est invité à vérifier qu’il dispose de la dernière version de ce document de présent ainsi que de la liste d’exigences.
+
+
+# 2 - Le contexte, les enjeux, la vision 
+
+**Audience : ce paragraphe s’adresse à tout acteur considérant l’usage de l’offre Cloud Pi Native du ministère de l’intérieur, il présente les principes fondateurs. Le cloud : des nouvelles possibilités techniques, une collaboration étendue des acteurs pour répondre aux enjeux d’un contexte exigeant, incertain et accéléré.**
+
+\
+
+
+
+# 3 - Principes généraux de MirAi 
+
+**Audience : ce paragraphe s’adresse à la communauté des concepteurs et architectes solutions, le lecteur est réputé compétent et formé sur les sujets abordés .**
+
+Ce document normalise les différents domaines associés à l’élaboration et au maintien des ressources partagées nécessaires à la mise à disposition de solutions numériques de qualité répondant au besoin. Il s’assure que l’ensemble peut-être mis en œuvre de manière cohérente avec une consommation minimisée des ressources : financière, RH et ecoresponsable tout en étant le plus conforme by design.
+
+Il recommande ou fixe les mesures permettant d’atteindre l’objectif, tout en favorisant l’innovation, la prise en compte de l’obsolescence régulière des technologies et la manœuvre RH nécessaire (formation continue, recrutement …)
+
+\
+
+
+
+## Périmètres du document et configurations prises en compte
+
+Ce document concerne le socle Mirai dans les configurations précisées ci-dessous.
+
+Le ministère de l’intérieur dispose de plusieurs capacités d’hébergement d’application on prem et on-cloud.
+
+Pour les applications basées sur l’IA générative l’un des point clés est l’accès à une ressource scalable de calcul haute performance (HPC).
+
+Au moment de l’écriture de ce document la capacité est majoritairement déléguée à une infrastructure maîtrisée par le MI sur cloud provider public. Cette infrastructure s’appuie sur le modèle opérationnel et technique Cloud Pi Native.
+
+La possibilité de faire fonctionner certains modèles ou algorithmes on-premise existe mais est très limitée en capacité et réservée à des cas d’usage très spécifique dont le produit supporte l’ensemble des coûts.
+
+( pour rappel le HPC nécessité des cartes d’accélération GPU et CPU haut de gamme consommant beaucoup d’énergie)
+
+**Pour l’ensemble de ces configurations l’usage de la chaîne DevSecOps managée par le Ministère de l’Intérieur est impératif. (hors cadre dérogatoire accordée)** 
+
+
+## Gestion des non-conformités, dérogations et contribution 
+
+L’évolution rapide des technologies cloud et IA peuvent conduire à ce que les informations ou exigences contenues dans ce document  restreignent l’innovation. 
+
+Il est également souhaité, pour éprouver le modèle, de notifier le département architecture d'entreprise du Ministère de l'intérieur au plus tôt des éventuelles impossibilités ou limitations remarquées. 
+
+Les directions d’applications ou les organisations utilisatrices peuvent contribuer, via un échange préalable, à enrichir les fonctionnalités de l’offre ou du cadre lui-même. Sur l’offre la contribution est effectuée directement sur le repository open source de la solution via un pull request.
+
+En cas de non-conformité aux exigences de ce document ou absence de contribution à l’offre, une demande de dérogation dûment motivée sera formulée à l’avance par la direction d’application. Seule la notification de la décision permet d’amender le besoin de conformité au cadre, temporairement ou de manière pérenne dans le cadre d’une dérogation. Dans le cadre d’une dérogation, la direction d’application prend à sa charge le surcoût complet de possession. ( formation, homologation, personnel assurant la tme, etc… ) 
+
+Lors de l’utilisation du cadre et de l’offre Cloud PI Native, toute organisation souhaitant décliner ce cadre dans un document de norme inférieur pour un besoin propre est invitée à référencer la dernière version de ce document en l’état.  Dans la hiérarchie des normes, une instruction de niveau inférieur ne peut entrer en conflit ou contredire ce présent document.
+
+
+## Le modèle organisationnel, de responsabilité et de collaboration Cloud Native
+
+L’architecture, le modèle de responsabilité et d’organisation à mettre en place est orienté pour maximiser la qualité, la sécurité, la fluidité opérationnelle et l’évolutivité du produit en  tirant parti au maximum des possibilités offertes par la technologie kubernetes, un flux de production DevSecOps et une collaboration étendue entre les acteurs. 
+
+**L’élargissement de la responsabilité du développeur et de l’équipe produit**
+
+La responsabilité de l’équipe produit est élargie dans le cadre Cloud Native. Elle élabore et exploite une solution qui répond au besoin métier généralement une automatisation d’un ou plusieurs processus métiers . L’équipe s'assure de la qualité et de la disponibilité du service rendu à l’usager selon le précepte : « You build it, you run it ». L’équipe s’organise de façon  intégrée, si nécessaire avec de l’externalisation, pour couvrir l’ensemble des aspects nécessaires de la conception à l’exploitation des produits.
+
+Le développeur, en particulier, met à disposition d’un point de vérité du code sous la forme d’un ou plusieurs dépôts de code logiciel fonctionnel et d’infrastructure. Il met en place un flux intégré et continu de production en s'appuyant sur un orchestrateur primaire DevSecOps qu’il construit et opère. 
+
+Le développeur initialise et supervise le pipeline de l’orchestrateur secondaire opéré par le ministère de l’Intérieur (cf plus loin sur la configuration de l’offre Cloud Pi Native). Il intègre les étapes de vérification de sécurité génériques imposées par le ministère et spécifiques issus de la démarche d’homologation. 
+
+L’ensemble combiné des orchestrateurs primaire et secondaire assure la fonction d’homologation et de déploiement en continu du produit numérique. 
+
+Dans le cas de la détection d’une non-qualité critique, telle une vulnérabilité critique, la progression du déploiement est bloquée, le développeur est prévenu en temps réel et doit corriger au plus tôt les défauts remontés. Cette approche permet de garantir un niveau de qualité, évite des régressions et maintient la dette technique au niveau le plus bas.
+
+Sur le plan organisationnel le développeur met généralement en place :
+
+- un contrôle de qualité au plus tôt, par exemple par un assistant et la revue de code ;
+
+- l’agilité ****avec des itérations courtes de constructions et de vérification des usagers ;
+
+- le découpage des livraisons en lot de taille de réduite ;
+
+- la mise en place d’une culture de collaboration étendue et des pratiques intégrant la sécurité à toutes les étapes.
+
+**La répartition des responsabilités s'établit de la manière suivante  :**
+
+**L'équipe produit intégrée :**
+
+- est responsable de l’application, de la qualité du code  et du bon fonctionnement de l’application pendant l’ensemble du cycle de vie de l’application. 
+
+- est responsable de définir et d’ajuster l’infrastructure en s’appuyant sur l’élasticité du cloud.(sur la base de l’offre Cloud adaptée selon la sensibilité des données) 
+
+- s'appuie sur les patterns applicatives et services managés mis à disposition, les magasins de charts helms et des _operators_ disponibles. Il est déconseillé, par exemple, de repackager une base de données alors qu’un _operator_, un chart ou un service managé est disponible. ( simplification et systématisation du mcs )
+
+- fournit un code de qualité exempt de défaut d'algorithmes, de qualité et de vulnérabilité ;
+
+- met en œuvre le flux de production, logiciel local permettant d’assurer la production et la démonstration d’un code de qualité exempt d’anomalie fonctionnelle, de non-qualité et de vulnérabilité, notamment dans les librairies importées ;
+
+- pose les normes de développement des langages utilisés ;
+
+- met en place des pratiques DevSecOps visant un maintien de la qualité dans le temps avec les composantes suivantes ( cf outillage DevSecOps) :
+
+  - test driven development ;
+
+  - couverture de test unitaire à 100% du back-end de l’application ;
+
+  - couverture significative des tests du front de l’application ;
+
+  - analyse statique de qualité du code ;
+
+  - analyse récursive des vulnérabilités des librairies importées ;
+
+  - utilisation exclusivement d’images sources maintenues en condition de sécurité et certifiées (distribution LTS) ;
+
+  - conception des tests d’intégration en sandbox ;
+
+  - fourniture des outils nécessaires à la remontée de l'état de santé des briques applicatives destinées à fonctionner en production (healthcheck) ;
+
+  - fourniture des indicateurs nécessaires au suivi en temps réel de la qualité en condition opérationnelle de sa solution (exports prometheus) ;
+
+  - exploitation des logs remontés.
+
+- met en place un hébergement sur une plateforme kubernetes afin d’assurer la démonstration du bon fonctionnement de l’application avec la solution qu’il préfère soit internalisée (avec un moyen de mener des démonstrations) ou sur cloud public. 
+
+- met en œuvre l’intégration technique et organisationnelle avec la chaîne DevSecOps de l’offre Cloud Pi Native et initialise le flux logiciel  global (cf plus bas). 
+
+- maintient un point de vérité du code logiciel ainsi que celui du code d’infrastructure. Celui-ci est accédé par la chaîne DevSecOps étatique, la sécurisation d’accès issus par token.
+
+- est responsable de la surveillance de l’ensemble des pipelines, y compris pour celui géré côté ministère. 
+
+- met en place une intégration du flux de retour d’anomalie “shift-left” des orchestrateurs afin de permettre une correction au plus tôt des anomalies.
+
+- effectue l’apprentissage comportemental du firewall applicatif Web (WAF) vis-à-vis de l’application dans le cadre fixé par le ministère. (anticipation avant la mise en production)
+
+- est invité à mettre en œuvre ce pipeline au plus tôt dans le processus de réalisation. 
+
+**Notes :  ( cf exigences CCT )**
+
+**L’équipe de développement respecte les règles suivantes permettant une qualité de code en progression et un maintien de la sécurité :**
+
+- minimise la portion spécifique de code développés en s’appuyant sur le catalogue des services proposés. (revoir régulièrement)
+
+- met en place une couverture de test unitaire complète du back-end  ( et fourni les moyens de vérification automatisé à la chaîne secondaire )
+
+- mener une analyse de code systématique le plus tôt possible ( les langage et IDE modernes fournissent des fonctions de ce type )
+
+- mener une analyse de CVE des dépendants importées et apporter des corrections.
+
+L’équipe intégrée met en œuvre une activité continue de refactoring du code produit. Ainsi, la qualité du code ne peut pas être décroissante.
+
+**Elle fournit les preuves** que des tests de sécurité, de qualité, de robustesse des algorithmes ont été mis en œuvre, et qu'ils n'ont pas remontés de vulnérabilités ou d'erreurs majeures. En s’appuyant notamment sur les logs des analyses des outils de la chaîne primaire. Elle fournit la preuve (ex: le document) des normes de développement et pratiques permettant de maîtriser la qualité du code produit. ( refactoring, peer review, etc.. )
+
+Note : l’équipe s’assure qu’après le dernier déploiement stable de l’application, toutes nouvelles vulnérabilités critiques et importantes seront détectées et corrigées. En cas de non correction des anomalies dans un délai de plusieurs mois et surtout si l’application est exposée sur internet, l’hébergement de la solution pourra être suspendu pour maintenir en intégrité les données.
+
+**L’exploitant Ministériel du cadre d’intégration Mirai** :
+
+- Il assure de la disponibilité et de la qualité de fonctionnement des éléments de socle Mirai et maintient à jour la documentation sur le fonctionnement des interfaces et assure les évolutions fonctionnelles ;
+
+- LLM….
+
+- Il est également en lien avec les autorités d’homologation afin de s’assurer que l’ensemble est en condition d’assurer la protection d’ensemble;
+
+- Il intègre les propositions d'évolution “pull request” proposée en fonction de son plan de charge et d’une négociation préalable.
+
+- Il fournit la documentation dont les éléments d’orientation ou d’aide à la migration permettant au développeur de s’orienter vers l'opérateur cloud qui hébergera son produit. ( cela dépend également des décisions projets ou d’homologation ) 
+
+**L’opérateur du socle Mirai**  :
+
+ll assure le maintien en condition de disponibilité et de sécurité du socle Mirai, les interfaces API de management, la console, la gestion capacité et les offres de services managées.
+
+Le Cloud PI est constitué de plusieurs régions ( elle même constituées de plusieurs centres de calculs ) en zones de sensibilité usuel et DR. 
+
+Chacune des régions peuvent faire l’objet d’une affinité ou restriction de services, sur la nature des données, des typologies de projets, ministériels et interministériel, chaîne de SecOps secondaire;  etc…
+
+Des pratiques complémentaires sont introduites :
+
+**Le “GitOps”,** contraction de git et opération, est indispensable à la gestion des applications Cloud Native avec Kubernetes. Ce mode d’organisation du code d'infrastructure permet de maîtriser la description de l’infrastructure de production avec les mêmes pratiques de revue collaborative que celle du logiciel. Il est par exemple strictement interdit de faire des modifications «à la main » sur l’environnement de production, toute variation est supprimée, l’infrastructure réelle est strictement celle décrite par les fichiers d’infrastructure.
+
+Le **“shift-left”** (vers la gauche du processus de développement) fait référence à la remontée le plus tôt possible vers le développeur des anomalies identifiées par la chaîne de déploiement et de vérification DevSecOps. Ce flux est notamment mis en œuvre depuis la chaîne secondaire.
+
+**Présentation du cycle d’usage de l’offre pour les directions d’applications:**
+
+**Phase d’initialisation du projet**
+
+
+##
+
+## Préconisations générales d’architecture et technique
+
+Ce chapitre précise les aspects importants liés à l’usage du socle Mirai dans le cadre du ministère de l’intérieur.  Il est attendu que les acteurs soient correctement formés à la solution kubernetes et se maintiennent à jour. La technologie évoluant rapidement.
+
+C’est le respect de ces normes qui permet à la fois d’adresser les enjeux de performance en termes de vitesse de livraison et de qualité de service, mais aussi de normaliser les applicatifs pour une meilleure évolutivité et maîtrise de la dette technique. Enfin, elles assurent une intégration fluide au sein des systèmes d’information Ministériels.
+
+Un des principes cœurs est de laisser un certain degré de liberté au concepteur/développeur sur le fonctionnement interne de son application. Au contraire, les intéractions avec les autres applications et services seront particulièrement contraintes.
+
+\
+
+
+
+## Spécificités à prendre en compte sur la création des applications devant s’intégrer dans le cadre du socle Mirai.
+
+## Spécificités à prendre en compte sur la topologie réseau et les ouvertures de flux
+
+L’organisation de réseau est segmenté par type de service porté par le flux. ( flux usagers, interdatacenters, interapplicatifs ). Les flux réseau sont ouverts en lecture des manifests kubernetes / helms notamment Ingress et egress.
+
+
+## Spécificités à prendre en compte autour de la qualité et de la sécurité des applications
+
+L’objectif d’ensemble est de s’assurer que le code produit est de qualité constante ou accrue, exempt de vulnérabilités algorithmiques ou importées néfastes. 
+
+Pour atteindre ces objectifs plusieurs mécanismes doivent être mis en place par l’équipe de développement intégrée :
+
+- minimiser la portion spécifique de code développés en s’appuyant sur le catalogue de service proposé.
+
+- mettre en place une couverture de test unitaire complète du back-end  ( et fournir les moyens de vérification automatisé à la chaîne secondaire )
+
+- mener une analyse de code systématique le plus tôt possible ( les langage et IDE modernes fournissent des fonctions de ce type )
+
+- mener une analyse de CVE des dépendants importées 
+
+La chaîne secondaire reconstruit les images à partir des codes sources et procède aux mêmes tests avec des outils complémentaires. L’orchestration du pipeline secondaire est gérée par l’équipe et intègre les tests de vérification issue de la démarche d’homologation de l’application qui fixe les seuils de blocage de déploiement.
+
+Les tests typiques consistent à vérifier la qualité du code ( et la bonne couverture des tests ), et le bon fonctionnement de l’application (non régression) et le scan de vulnérabilité.
+
+L’équipe de développement reçoit via l’interface “shift left” une notification des rapports qui doit être intégrée au flux de travail pour correction.
+
+L’équipe intégrée est invitée à mener une activité constante de refactoring du code produit et du suivi des vulnérabilités de sécurité.La chaîne secondaire est susceptible de bloquer les déploiements si la qualité d’ensemble du code est en baisse ou que le scan fait remonter des Cves critiques. L’équipe est invitée à vérifier et prendre en compte également le résultat des scans de vulnérabilité après la dernière version stable déployée de l'application et de corriger les Cve critiques et importantes. ****
+
+**L’équipe prend en compte que si le suivi des plans d’action n’est pas mis en oeuvre et que de surcroît des vulnérabilités critiques sont détectées depuis le dernier déploiement stable,et que l’équipe projet n’a pas pris en compte les injonctions de correction, l’application sera susceptible d’être suspendue jusqu'à la remédiation pour garantir l’intégrité et la protection de ses données**
+
+
+## Modèle d’intégration d’une application dans le cadre de Mira
+
+Le schéma ci-dessous précise le cadre général d’intégration d’une application au sein du socle de Mirai. 
+
+
+# 4 - Présentation du socle MirAI ses évolutions pressenties
+
+L’offre Cloud PI native répond aux exigences du CCT à travers un ensemble organisationnel et technique. Elle propose une offre Cloud régalienne, souveraineté, sécurisée et isolée de toute problématique juridique extra-européenne. 
+
+La composition de l’offre est amenée à évoluer en termes de catalogue de service selon la demande et les financements disponibles, ces évolutions permettent la diminution de la quantité de code produit par les équipes de développement et l'accélération des performances, typiquement : fonctions as services, services managés, gpu;
+
+Les offres d’hébergement compatibles avec les applications « Cloud Native » du ministère de l’intérieur sont :
+
+- Hébergement de l’application sur les infrastructures internes infogérées ;
+
+- Hébergement de l’application sur des infrastructures cloud externes ;
+
+- Hébergement de l’application sur des infrastructures gérées par l’application.
+
+L’ensemble de l’administration technique de la plateforme et des infrastructures est automatisée, pilotée par le développeur/concepteur via l’orchestration DevSecOps avec mise en œuvre d’un principe dit _gitops_: la plateforme de production “tire” le déploiement.
+
+Pour rappel, le développeur n’accède pas directement à l’environnement de production. Toute correction ou évolution suit le processus de déploiement automatisé passe via le principe “gitops” évoqué ci-dessus. Le développeur dispose d’un accès libre à ses environnements (via un poste bastion si l’environnement est situé côté ministériel) il dispose également d’un accès proxifié aux indicateurs de la production. La service team qui l’accompagne, avec les accréditations nécessaires, dispose quant à elle d’un poste dédié lui permettant d’accéder directement via un bastion aux services d’observabilité et faciliter le débogage en production. (note modalité en cours d’évaluation incrémentale )
+
+L’ensemble du code source de l’offre Cloud PI Native et sa documentation sont disponibles sur demande en open-source sous la licence Apache2. Toute contribution est bienvenue.
+
+La politique de segmentation d’hébergement est présentée ci-dessous :
+
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdMSMcFwWsYiTKEwr6wBPd-S6ORL6TLgfZ6AaP5n6AZUE91CLu-rSKIaDFj3G9bTL4LLnUiHv9iGa4jHHtExneypV4e50f9sQzQvYLO7jgV7ZLNbe17UQHk6ImS0R_wihBj63Pb?key=b5LEjWR8fgqOkh2r0YLPCgtk)
+
+Note : chaque région est autonome dans son fonctionnement. Seul le service de stockage objet de type S3 est accessible sur l’ensemble des régions ministérielles. ( réplication en proximité dans le datacenter).
+
+
+### Les magasins de composants kubernetes et d’image de base
+
+Associée avec l’offre Cloud pi Native, des magasins de composants Kubenetes sont mis à disposition incrémentalement selon les besoins des applications cela inclut celui de l’éditeur RedHat. Le développeur peut dès aujourd’hui s’appuyer sur un catalogue porté par l’Insee autour de son produit Onyxia : <https://github.com/InseeFrLab/helm-charts>
+
+L’équipe produit est fortement invitée à l’utiliser ces composants courants et ne pas refabriquer une version dédiée dont le cycle ne sera pas en adéquation avec les besoins de réactivité en mcs. 
+
+A propos des images de base nues, il est recommandé d’utiliser les versions dites "LTS" , certifiées et maintenues selon un processus qualité au sein des communautés ou éditeurs pour la construction des pods/conteneurs. Debian, Redhat, Ubuntu font partie des communautés les plus attentives. 
+
+Sur les besoins "classiques" de persistance : postgres, redis, mariadb, mongodb, elastic, etc… l’approche recommandée de s’appuyer sur les opérateurs kubernetes disponibles et les objets statefullSet. Sur le cluster de production les opérateurs sont déployés par l’hébergeur car généralement ils requièrent les droits globaux. 
+
+L’équipe projet doit vérifier les versions disponibles lors de la conception de son projet.
+
+
+# 6 - Introduction à l’offre de service du ministère 
+
+# 5 - Référentiel d’exigences et modalités d'usage
+
+Les exigences du CCT sont classées en 2 niveaux d’exigence (périmètre du Ministère de l’Intérieur) :
+
+- Primordial : L’exigence est impérative et traitée administrativement. 
+
+- I – Important : Exigence prise en compte pour la notation technique de la solution
+
+ 
+
+Précisions sur le cas de l’exclusion administrative (périmètre du Ministère de l’Intérieur) :
+
+- La non-conformité au cadre de norme entraîne l’exclusion administrative lors du dépouillement et la mise en œuvre des actions de remédiation du marché lors de l’exécution du marché.
+
+- La non-conformité aux exigences d’architecture entraîne l’impossibilité d’utilisation du socle de sécurité associé à l’offre Cloud Native
+
+Par défaut les règles du CCT s’imposent. Elles peuvent être précisées dans le cas d’un appel d'offres dans le règlement de consultation pour le dépouillement des offres et dans le CCAP pour l’exécution du marché. Une demande de dérogation est possible. ( cf paragraphe ad hoc )
+
+ 
+
+
+#
+
+# 6 -  Annexes
+
+## Les normes industrielles, institutionnelles applicables
+
+La conception de système d’information dans le cadre de l’État est encadrée par un ensemble de recommandations ou règles à mettre en œuvre.  Ces normes sont citées ci-dessous. Le lecteur est invité à vérifier qu’il dispose des versions les plus à jour.
+
+|                                                                                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Norme industrielle                                                                     | **Kubernetes** : <https://kubernetes.io/fr/>ArgoCD : <https://argo-cd.readthedocs.io/en/stable/>                                                                                                                                                                                                                                                                                                                                                           |
+| Guides & outils pour la conception                                                     | **DSFR** : Design System FR. La charte internet de l’État ( qui intègre le RGAA )<https://www.systeme-de-design.gouv.fr/>**Guide d’éco conception** : <https://ecoresponsable.numerique.gouv.fr/publications/referentiel-general-ecoconception/>**Divers guides de conceptions logiciels:**https\://[guides.etalab.gouv.f](https://guides.etalab.gouv.fr/accueil.html)r<https://catalogue.numerique.gouv.fr><https://schema.gouv.fr><https://code.gouv.fr> |
+| Cadres de pratiques de conception et de conduite de projet agile                       | <https://www.numerique.gouv.fr/actualites/guide-pour-allier-agilite-et-securite-numeriques/>                                                                                                                                                                                                                                                                                                                                                               |
+| Logiciel libre                                                                         | Socle InterMinistériel des Logiciels Libres ( SILL) de par sa fonction de source pour le référentiel de produits du CCT Ministériel : <https://sill.etalab.gouv.fr/fr/software>                                                                                                                                                                                                                                                                            |
+| Normes interMinistérielles de conception de solutions                                  | **Doctrine cloud de l’état :** <https://www.legifrance.gouv.fr/circulaire/id/45205>**Référentiel Général d’Accessibilité pour les Administrations :**<https://accessibilite.numerique.gouv.fr/>                                                                                                                                                                                                                                                            |
+| Référentiel Général de Sécurité, en association avec le règlement européen et l’EIDAS. | <https://www.ssi.gouv.fr/entreprise/reglementation/confiance-numerique/liste-des-documents-constitutifs-du-rgs-v-2-0/>                                                                                                                                                                                                                                                                                                                                     |
+| Référentiel Général de Gestion des Archives                                            | <https://www.ssi.gouv.fr/entreprise/reglementation/confiance-numerique/le-reglement-eidas/>                                                                                                                                                                                                                                                                                                                                                                |
+| Référentiel Général de Gestion des Archives                                            | <https://francearchives.fr/fr/circulaire/R2GA_2013_10>                                                                                                                                                                                                                                                                                                                                                                                                     |
+| règlement européen sur la protection des données personnelles                          | <https://www.cnil.fr/fr/reglement-europeen-protection-donnees>                                                                                                                                                                                                                                                                                                                                                                                             |
+
+\
+
+
+
+## Liens vers autres contenus utiles(informatif)
+
+<https://kubernetes.io/fr/>
+
+<https://www.rancher.com/products/k3s>
+
+https\://www\.redhat.com/en/technologies/cloud-computing/openshift
+
+<https://argo-cd.readthedocs.io/en/stable/>
+
+<https://www.redhat.com/en/topics/microservices/what-is-a-service-mesh>
+
+https\://www\.redhat.com/en/topics/devops/what-is-gitops
+
+<https://www.cloudcomputingpatterns.org/>
+
+<https://12factor.net/fr/>
+
+<https://tanzu.vmware.com/content/blog/beyond-the-twelve-factor-app> 
+
+<https://www.techworld-with-nana.com/devops-bootcamp>
+
+<https://ecoresponsable.numerique.gouv.fr/publications/bonnes-pratiques/bonnes-pratiques/#bonnes-pratiques-services-numeriques>
+
+La documentation sur le CloudPI :
+
+<https://pi.interieur.rie.gouv.fr/> ( accessible via le rie uniquement )
+
+<https://cloud-pi-native.fr/>
+
+<https://github.com/Cloud-pi-Native/>
+
+
+##
+
+## Glossaire
+
+|                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Terme**        | **Description / définition******                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Agile            | Une méthode agile est une méthode de développement informatique permettant de concevoir des logiciels en impliquant au maximum le demandeur (client), ce qui permet une grande réactivité à ses demandes. Les méthodes agiles se veulent plus pragmatiques que les méthodes traditionnelles. Elles visent la satisfaction réelle du besoin du client, et non d'un contrat établi préalablement. La notion de méthode agile est née à travers un manifeste signé par 17 personnalités (parmi lesquelles Ward Cunningham, l'inventeur du Wiki), créateurs de méthodes ou dirigeants de sociétés. (Source : https\://www\.techno-science.net/definition/743.html)                                                                                                                                                                                                                                |
+| ADR              | Enregistrement des décisions d’architecture suivant le modèle[ MADR](https://adr.github.io/madr/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| API              | Une API est le moyen « standard » désormais, par lequel est exposée une ressource, afin d’en permettre l’accès. Le qualificatif « RESTFULL » renvoie à la conformité de l’API au modèle « REST » qui est un modèle de représentation de l’URL de l’API. Une API est assortie d’un contrat de service qui décrit son fonctionnement. Ce contrat doit être conforme au standard « OPEN API V3 » et accessible aux développeurs.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| API Management   | Processus de gestion de la totalité du cycle de vie d’une API, de son idéation jusqu’à son retrait de service. Décrit dans la Stratégie d’API. Une plateforme d’exposition d’API existe à la DNUM : api.minint.fr , ainsi qu’une autre, de niveau interMinistérielle : api.gouv.fr                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| BATN             | Bureau Appui à la Transformation Numérique                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| CaaS             | Les CaaS ou Containers en tant que Service (Containers as a Service en anglais) sont une catégorie de services Cloud permettant aux développeurs de logiciels de télécharger, d’organiser, d’exécuter, de gérer, de mettre à l’échelle et d’arrêter des containers en utilisant l’interface web ou l’API d’un fournisseur. Source :[ www.lebigdata.fr](http://www.lebigdata.fr)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| CCAP             | Cahier des Clauses Administratives Particulières                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| CCT              | Cadre de Cohérence Technique du MIOM.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| CCTP             | Cahier des Clauses Techniques Particulières                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| CCU              | Cadre Commun d’Urbanisation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| CERFA            | Centre d’Enregistrement et de Révision des Formulaires Administratifs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| CHAP             | Challenge Hash Authentication Protocol                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| CI/CD            | CI/CD signifie « Continuous Integration/Continuous Delivery », ou intégration continue/livraison continue ; c’est une méthode de mise en œuvre logicielle utilisée par les équipes de développement pour apporter des modifications de code plus fréquentes et plus fiables. Le CI/CD englobe deux ensembles de pratiques complémentaires, chacune reposant fortement sur l’automatisation.(Source : https\://www\.splunk.com/fr\_fr/data-insider/what-is-ci-cd-pipeline.html#:\~:text=CI%2FCD%20signifie%20%C2%AB%20Continuous%20Integration,plus%20fr%C3%A9quentes%20et%20plus%20fiables.)                                                                                                                                                                                                                                                                                                  |
+| Client           | Dans une architecture client-serveur, le client est celui qui est à l'initiative des requêtes faites au serveur                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Cluster          | Cluster (grappe) : plusieurs systèmes sont interconnectés soit pour augmenter la puissance de calcul (on parle alors de cluster de performance), soit pour offrir une tolérance de pannes accrue par la redondance des composants unitaires (on parle alors de cluster de haute disponibilité). Dans les deux cas, pour bénéficier de l'architecture en grappe, il faut que les applications aient été conçues en conséquence ou que le système d'exploitation, le compilateur et les logiciels sous-jacents (bases de données, middlewares, etc.) prennent en charge les fonctions adéquates de parallélisation des traitements ou de reprise sur incident.                                                                                                                                                                                                                                  |
+| Conteneur        | Les conteneurs sont des unités exécutables de logiciel dans lesquelles le code d'application est empaqueté, avec ses bibliothèques et ses dépendances, de manière commune, afin qu'il puisse être exécuté n'importe où, que ce soit sur un ordinateur de bureau, dans un système informatique traditionnel ou dans le cloud.(Source : https\://www\.ibm.com/fr-fr/cloud/learn/containers#:\~:text=Les%20conteneurs%20sont%20des%20unit%C3%A9s,traditionnel%20ou%20dans%20le%20cloud.)                                                                                                                                                                                                                                                                                                                                                                                                         |
+| CVE              | Common Vulnerabilities and Exposures. **_Common Vulnerabilities and Exposures_** ou **CVE** est un dictionnaire des informations publiques relatives aux vulnérabilités de sécurité. Le dictionnaire est maintenu par l'organisme [MITRE](https://fr.wikipedia.org/wiki/MITRE), soutenu par le [département de la Sécurité intérieure des États-Unis](https://fr.wikipedia.org/wiki/D%C3%A9partement_de_la_S%C3%A9curit%C3%A9_int%C3%A9rieure_des_%C3%89tats-Unis).                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| DevSecOps (DSO)  | Le DevSecOps inclut la composante sécurité (security) dans l’approche DevOps, qui lie elle-même le développement (développement) et l’exploitation (opérations). Le DevSecOps s’instancie par des mesures de formation, organisationnelles et des ajouts de système de vérification à chaque fois que l’application est construite.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| DINUM            | Direction Interministérielle du Numérique                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| DITP             | Direction InterMinistérielle de la Transformation Publique (placée sous l'autorité du ministre de l'Action et des Comptes publics, chargée de la réforme de l’État).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| DNUM             | Direction du Numérique                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| DSFR             | Design System FR. La charte internet de l’État.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ENT(A)           | Environnement Numérique de Travail (de l’Agent)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| FIP              | Factory Instrumental Protocol (Flux d’Information Processus). Actuellement FIP est une norme française (NF C46 601 à NF C46 607) et une norme européenne (EN 50170-3). La promotion et une part d’assistance technique de ce réseau sont effectuées par l’organisation WorldFIP dont le siège se trouve en France. La cible privilégiée de WorldFIP est l’interconnexion de capteurs, actionneurs et automates dans les systèmes automatisés. Comme la quasi-totalité des réseaux de terrain WorldFIP a une structure en trois couches. (https\://www\.i3s.unice.fr/\~map/Cours/LPIREEL/COURS3FIP.pdf)                                                                                                                                                                                                                                                                                        |
+| Gitops           | L'approche GitOps repose sur l'utilisation de référentiels Git comme unique source de vérité pour distribuer l'infrastructure en tant que code. Le code envoyé vérifie le processus d'intégration continue, tandis que le processus de distribution continue vérifie et applique les exigences relatives à certains aspects, comme la sécurité, l'infrastructure en tant que code (IaC), ou toute autre limite fixée pour le framework d'application. Toutes les modifications apportées au code font l'objet d'un suivi, ce qui facilite les mises à jour et le contrôle de versions en cas de restauration.(Source : https\://www\.redhat.com/fr/topics/devops/what-is-gitops#:\~:text=Le%20GitOps%20peut%20%C3%AAtre%20consid%C3%A9r%C3%A9,les%20configurations%20de%20l'infrastructure.)                                                                                                  |
+| Hébergement      | L'hébergement, dans son sens le plus générique, est un service par lequel des ressources de stockage et de calcul sont fournies à une personne ou à une organisation pour l'hébergement et la maintenance d'un ou plusieurs sites Web et services connexes.(Source : https\://definir-tech.com/hebergement/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| IAM              | Gestion des identités et des accès (Identity and Access Management)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Java             | Java est un langage de programmation et une plate-forme de calcul lancé par Sun Microsystems en 1995. (Source : https\://www\.java.com/fr/download/help/whatis\_java.html)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Kubernetes       | Kubernetes est une plate-forme open-source extensible et portable pour la gestion de charges de travail (workloads) et de services conteneurisés. Elle favorise à la fois l'écriture de configuration déclarative (declarative configuration) et l'automatisation. C'est un large écosystème en rapide expansion. (Source : https\://kubernetes.io/fr/docs/concepts/overview/what-is-kubernetes/#:\~:text=Kubernetes%20est%20une%20plate%2Dforme,large%20%C3%A9cosyst%C3%A8me%20en%20rapide%20expansion.)                                                                                                                                                                                                                                                                                                                                                                                     |
+| Logiciel Libre   | Un logiciel libre est un logiciel dont la licence dite « libre » donne à chacun le droit d'utiliser, d'étudier, de modifier, de dupliquer, de donner et de vendre ledit logiciel sans contrepartie. La notion de logiciel libre ne doit se confondre ni avec celle de logiciel gratuit (freeware ou graticiels) ni avec celle de shareware (partagiciels). De même, les libertés octroyées par la licence d'un logiciel libre sont plus étendues que le simple accès au code source, ce qu'on appelle parfois logiciel « à sources ouvertes ».                                                                                                                                                                                                                                                                                                                                                |
+| MCO              | Maintien en Condition Opérationnelle                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| MI               | Ministère de l’intérieur                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| NFR              | Non Functional Requirement. Exigence non fonctionnelle que doit embarquer l’équipe. Généralement des exigences d’architectures, de sécurité, etc…                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| MIOM             | Ministère de l’intérieur et des Outre-Mer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Node             | NodeJS est une plateforme construite sur le moteur JavaScript V8 de Chrome qui permet de développer des applications en utilisant du JavaScript. Il se distingue des autres plateformes grâce à une approche non bloquante permettant d'effectuer des entrées/sorties (I/O) de manière asynchrone. (Source : https\://grafikart.fr/tutoriels/nodejs-intro-792)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Open API         | Une API ouverte, parfois appelée API publique, est une interface de programmation d'application (Application Programming Interface) qui permet au développeur d'accéder à une application logicielle propriétaire par voie de programmation. (https\://www\.lemagit.fr/definition/API-ouverte#:\~:text=Une%20API%20ouverte%2C%20parfois%20appel%C3%A9e,propri%C3%A9taire%20par%20voie%20de%20programmation.)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Openshift        | OpenShift est un service de plate-forme en tant que service de la société Red Hat qui permet de déployer des projets dans des containers.  Pour ce faire, OpenShift utilise les technologies Docker et Kubernetes. (https\://fr.wikipedia.org/wiki/OpenShift)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Open Source      | La désignation Open Source (« source ouverte » en français) s'applique aux logiciels dont la licence respecte des critères précisément établis par l'Open Source Initiative, c'est-à-dire la possibilité de libre redistribution, d'accès au code source, et de travaux dérivés.  Les logiciels Open Source et les logiciels libres désignent les mêmes logiciels, ceux dont la licence est reconnue libre par l'Open Source Initiative ou la Free Software Foundation.  Le terme « Open Source » est en concurrence avec le terme « logiciel libre » (\<em>Free Software\</em>) recommandé par la FSF. Le terme Freeware (graticiel) désigne des logiciels gratuits qui ne sont ni nécessairement ouverts, ni libres. (Source : https\://fr.wikipedia.org/wiki/Open\_source)                                                                                                                 |
+| Objet Métiers    | Représentation schématique d'un concept métier, instanciée sous la forme d’une donnée gérée par un système d’information maître et de l’organisation qui à la charge de maintenir cette donnée à jour et exempte d’erreur.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Pods             | Un pod représente une collection de conteneurs d’applications et de volumes fonctionnant dans le même environnement d’exécution. Les pods, et non les conteneurs, sont les plus petits artefacts déployables dans un cluster kubernetes. Les applications s’exécutant dans le même pod partagent la même adresse IP et le même espace de nom réseau.  Source : Kubernetes maitrisez l’orchestrateur des infrastructures du futur                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| PP               |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Proxy            | Un serveur proxy est une sorte de pont qui vous relie au reste d'Internet. Normalement, lorsque vous naviguez sur Internet, vous vous connectez directement au site Web qui vous intéresse. Un proxy établit à votre place la communication avec le site Web. (Source : https\://www\.avast.com/fr-fr/c-what-is-a-proxy-server#:\~:text=Un%20serveur%20proxy%20est%20une,communication%20avec%20le%20site%20Web.)                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Python           | Le langage Python est un langage de programmation open source multi-plateformes et orienté objet. Grâce à des bibliothèques spécialisées, Python s'utilise pour de nombreuses situations comme le développement logiciel, l'analyse de données, ou la gestion d'infrastructures.(Source : https\://www\.futura-sciences.com/tech/definitions/informatique-python-19349/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| RACI             | L'acronyme RACI (responsible, accountable, consulted et informed) ou RAM (responsibility assignment matrix) désigne dans le domaine du [management](https://fr.wikipedia.org/wiki/Management) une [matrice](https://fr.wikipedia.org/wiki/Matrice_\(management\)) des [responsabilités](https://fr.wikipedia.org/wiki/Responsabilit%C3%A9). Elle indique les rôles et les responsabilités des intervenants au sein de chaque processus et activité. La matrice RACI donne une vision simple et claire de qui fait quoi dans le projet, en permettant d'éviter une redondance de rôles ou une dilution des responsabilités. (Source : https\://fr.wikipedia.org/wiki/RACI)                                                                                                                                                                                                                     |
+| R2GA             | Référentiel Général de Gestion des Archives sur le portail national des archives                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Restful API      | Une API REST (également appelée API RESTful) est une interface de programmation d'application (API ou API web) qui respecte les contraintes du style d'architecture REST et permet d'interagir avec les services web RESTful. REST (Representational State Transfer).(Source : https\://www\.redhat.com/fr/topics/api/what-is-a-rest-api#:\~:text=Une%20API%20REST%20(%C3%A9galement%20appel%C3%A9e,avec%20les%20services%20web%20RESTful.)                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| RGAA             | Référentiel Général d’Accessibilité pour les Administrations                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| RGI              | Référentiel Général d’Interopérabilité                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| RGPD             | Le sigle RGPD signifie « [Règlement Général sur la Protection des Données](https://www.cnil.fr/fr/reglement-europeen-protection-donnees) ». Le RGPD est le règlement européen sur la protection des données, articles de lois sur l’accessibilité des données à des fins de recherche                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| RGS              | Référentiel Général de Sécurité, en association avec le règlement européen eIDAS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Rootless         | Les conteneurs rootless font référence à la possibilité pour un utilisateur non privilégié de créer, d'exécuter et de gérer des conteneurs. Ce terme inclut également la variété d'outils autour des conteneurs qui peuvent également être exécutés en tant qu'utilisateur non privilégié."Utilisateur non privilégié" dans ce contexte fait référence à un utilisateur qui n'a aucun droit d'administrateur et qui n'est "pas dans les bonnes grâces de l'administrateur" (en d'autres termes, il n'a pas la possibilité de demander que plus de privilèges lui soient accordés à eux, ou pour les progiciels à installer).(Source : https\://rootlesscontaine.rs/)                                                                                                                                                                                                                          |
+| SADC (CDS)       | Service d’accès au data center. Correspond à la chaîne de protection et de pollution des des flux entrants vers le data center. Cela peut être appelé parfois “chaîne de service” (CDS).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| SDID (ex SDITN ) | Sous-Direction à l'Innovation et Données de la Direction de la transformation numérique du MIOM. ( ex: sous direction de l’innovation et de la transformation numérique )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Shift left       | Le Shift Left décrit un principe qui consiste à rendre les flux de travail des entreprises plus efficaces, grâce à des tests et avec des suivis précoces. Cette méthode vous permet de transmettre les connaissances de votre service d’assistance rapidement et facilement à tous les employés de votre entreprise. (Source : https\://freshservice.com/fr/shift-left-blog/#:\~:text=Le%20Shift%20Left%20d%C3%A9crit%20un,les%20employ%C3%A9s%20de%20votre%20entreprise.)                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| SI               | Selon la définition restreinte donnée par Joël de Rosnay, « Un système est un ensemble d’éléments en interaction dynamique, organisés en fonction d’un but ». Le système d’information n’échappe pas à cette définition. Il est un ensemble dont les éléments sont les constituantes de toute organisation (entreprise, administration, association, groupement, …). Ces éléments sont de plusieurs natures : organisationnelle, informationnelle, métier, technique, technologique. Tous ces éléments forment un tout (plus ou moins cohérent) et participent à la réussite de l’organisation dans son objectif.                                                                                                                                                                                                                                                                             |
+| SIC              | Systèmes d’Information et de Communication                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| SIEM             | Security information and event management. Dans le domaine de la sécurité informatique, les produits et service logiciels de SIEM combinent la gestion des informations de sécurité (SIM) et la gestion des événements de sécurité (SEM) pour fournir des alertes en temps réel. Cet outillage est mis en œuvre un centre de supervision de la sécurité ( Security Office Center : SOC )                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| SILL             | Socle interministériel de logiciels libres. Il regroupe l'ensemble des logiciels libres préconisés au sein des ministères. Il est alimenté par des agents publics volontaires Ministériels, sous le contrôle de la DINUM                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| SPOC             | Single Point Of Contention : littéralement « point individuel de contention ». Consiste dans un système à identifier, pour les différents composants (matériels et/ou logiciels), l’existence de points constituant un goulet d’étranglement. Ce composant est alors considéré comme un SPOC pour le système.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| SPOF             | Single Point Of Failure : littéralement « point individuel de défaillance ». Consiste dans un système à identifier, pour les différents composants (matériels et/ou logiciels), l’existence de points de défaillance pouvant générer un dysfonctionnement du système de par l’impossibilité de redonder ce composant ou de par le choix de ne pas le redonder. Ce composant est alors considéré comme un SPOF pour le système.                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ST(SI)²          | Service des Technologies et des Systèmes d'Information de la Sécurité intérieure. Le ST(SI)² est chargé de concevoir, de piloter et de conduire les projets liés aux systèmes d'information, de communication et de commandement pour l'ensemble des policiers et des gendarmes. Il contribue à la définition de l'action, de la stratégie et de la politique de sécurité du ministère de l'intérieur en matière de système d'information et de communication. Il coordonne les services SIC de proximité de la police et de la gendarmerie. Il anime la politique d'innovation technologique du ministère dans ce domaine. (Source :[ https://fr.linkedin.com/company/stsisi](https://fr.linkedin.com/company/stsisi))                                                                                                                                                                       |
+| Swagger          | Une définition Swagger spécifie un ensemble de métadonnées qui décrivent une API REST.Si vous avez un fichier Swagger définissant une API REST, vous pouvez l'ajouter à votre projet en tant que source de synchronisation externe. Cette source peut être synchronisée avec le projet.(Source : https\://www\.ibm.com/docs/fr/rtw/9.0.1?topic=testing-swagger-definitions)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| TCP              | TCP (Transmission Control Program) est un protocole permettant l'ouverture de circuits virtuels entre applications                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| VM               | Une machine virtuelle, ou « virtual machine », est « le client » créé dans un environnement informatique, « l’hôte ». Plusieurs machines virtuelles peuvent coexister sur un seul hôte. Les principaux fichiers qui constituent une machine virtuelle sont un fichier journal, un fichier de paramètres de RAM non volatile, un fichier de disque virtuel et un fichier de configuration. (Source :[ https://www.vmware.com/fr/topics/glossary/content/virtual-machine.html](https://www.vmware.com/fr/topics/glossary/content/virtual-machine.html))                                                                                                                                                                                                                                                                                                                                         |
+| VPN              | Virtual Private Network, réseau privé virtuel (RPV) : Le principe du RPV consiste à créer un réseau privé au sein d'un réseau public. Cette démarche existe depuis longtemps : les opérateurs s'en servent pour gérer les lignes privées de leurs clients au sein des mêmes « tuyaux ». Aujourd'hui, on parle surtout de réseaux privés virtuels sur Internet. Les RPV mettent en œuvre des mécanismes de contrôle d'accès (authentification des utilisateurs) et assurent la confidentialité des données (cryptographie). Le terme de réseau privé virtuel s'applique aussi au réseau téléphonique : les opérateurs font ainsi transiter sur le réseau public des services évolués de téléphonie jusque-là cantonnés au réseau privé de l'entreprise appel en numérotant uniquement l'extension, renvoi d'appel, conversation à plusieurs, etc. Cette technologie s'étend aussi aux mobiles. |
+| Windows Server   | Windows Server est un système multi-tâches, multi-utilisateurs qui dans ses fonctionnalités peut se comparer au système UNIX/Linux. Il présente l’avantage que certains logiciels soient moins chers que leur équivalent fonctionnant sous UNIX, et plus rarement, Linux. Par ailleurs, la quasi-totalité des éditeurs propose des versions de leurs produits pouvant tourner sur serveur Windows.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+
+\
+
+
+\--- fin du document ---
+
+
+# 7 - Référentiel d’exigences applicables aux applications Mirai
+
+Note: le terme développeur est générique et fait référence à l’individu ou l’organisation pluridisciplinaire qui est chargée de produire et maintenir :  la base de code, le corpus de tests et les fichiers de description d’infrastructure et les documentation technique et usager. 
+
+Il est responsable de l'adéquation et de la qualité de la solution au besoin des usagers en collaborant de manières étendues avec les autres acteurs impliqués.
+
+\
+
+
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+| :-----------------------: | -------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: |
+|           **ID**          | **Type** |                                                                                                                                                                                                                                                                **Exigence**                                                                                                                                                                                                                                                               |     **Catégorisation**    |
+|          Version          |          |                                                                                                    Version : liste des exigences, initialisé le 10 mars 2025change management : Exigence P : primordiale, le non respect entraîne un rejet administratif de l'offre lors d'un appel d'offre et un plan de remédiation obligatoire lors de l'exécution du marchéExigence I : importante, permet de maximaliser la qualité de la solution                                                                                                   |             -             |
+|                           |          |                                                                                                                                                                                                                                                                    ---                                                                                                                                                                                                                                                                    |                           |
+|          EXI-G-1          | I        |                                                                                                                                                                              Dans le cadre d’un appel d’offre, en cas d’incohérence entre les documents et hors mentions explicites, le cct et la liste des exigences associées sont de niveaux supérieures.                                                                                                                                                                              |   hiérarchie des normes   |
+|          EXI-G-2          | I        |                                                                                                                                                                                          Le respects des exigences du CCT sont limitées à la durée du marché pour un opérateur économique, mais permanent pour la direction d’application métier.                                                                                                                                                                                         |       applicabilité       |
+|          EXI-G-3          | I        |                                                                                                Respect des standards et des normes applicables industrielles, européennes et étatiques, pour la conception de solutions numériques hébergées dans le cloud native (kubernetes), Design Système de l’État, RGAA, RGS, RGI, doctrine Cloud au centre. cf paragraphe du volet de CCT :Les normes industrielles, institutionnelles applicables                                                                                                |      Cadre de normes      |
+|          EXI-G-4          | I        |                                                                                                                                                                                       Respect du guide d'éco-conception. La conception frugale vis à vis des ressources d’infrastructures consommées et l'impact vis-à-vis du terminal de l'usager.                                                                                                                                                                                       |   Qualité de la solution  |
+|          EXI-G-5          | **P**    |                                                                                                                                                                              Choix d’un hébergement adapté à la nature des données manipulées ( usuel / DR ) et selon le cadre légal adapté.Cloud Pi (on-prem), Cloud public, Infrastructure dédiée ou mixte.                                                                                                                                                                             |       Infrastructure      |
+|          EXI-G-6          | **P**    |                                                                                                                                                                                                                   Si l'application est exposée sur internet un service de CDN / anti-ddos externalisé sera mis en place.                                                                                                                                                                                                                  |       Infrastructure      |
+|          EXI-G-7          | P        |                                                                                                                                                                                             Respect des exigences et du cadre CCT cloud pi native. (Les exigences ne sont pas répétées dans ce document, sauf les exigences clés pour rappel)                                                                                                                                                                                             | Conception et hébergement |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|          EXI-G-8          | P        |                                                                                                                                                                Un modèle estimatif d'inducteur de coût consommation de calcul haute performance est établi par utilisateur ou par transaction (en moyenne). Il peut être exprimé en nombre de token LLM ou en nombre de GPU                                                                                                                                                               |           Finops          |
+|            ---            |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|    EXI-ORG-1(Pi-native)   | **P**    |                                                                                                                          Conformité au modèle de responsabilité Cloud Pi Native : les développeurs/concepteurs sont responsables de la partie développement, du maintien en continu d’une qualité constante de la solution et l’absence de vulnérabilités exploitables notamment avant toute mise en production.                                                                                                                          |     Modèle d'Opération    |
+|   EXI-ARCH-8(Pi-Native)   | **I**    |                Le déploiement est réalisé via gitops ( argoCD)L'architecture de déploiement d'application est organisée pour déployer indépendamment les modules de l'application, sans couplage entre-eux.Typiquement l'application est découpée en une application maître d'ensemble référençant le déploiement de sous-applications.L'ensemble est géré en version dans un git.Chaque changement est réalisé via un git push ou via pull request si l'équipe a mis en place une relecture collective du code de version                |                           |
+|   EXI-ARCH-9 (Pi-native)  | **I**    | L'équipe met en place une stratégie gitops et "d'immutability" de la configuration de l'infrastructureChaque nouveau déploiement recrée un environnement nouveau ("écrase" l'ancien).Le déploiement met en oeuvre une stratégie de reprise de données applicative à chaque nouveau déploiement.(la sauvegarde des données applicatives doit être effectuée régulièrement, juste avant le nouveau déploiement )A titre d'exemple, l'opérator cnpg de postgres (https\://cloudnative-pg.io/) permet de mettre en place ce type de pratique. |                           |
+| EXI-ARCH-10 - (Pi-native) | **P**    |                                                                                                                                                           Consommation systématique des services socles. (chaîne de service, IAM, Vault, etc...)Dans le cas où plusieurs services sont susceptibles d’être utilisés, privilégier les services dont l'enrôlement est automatisé.                                                                                                                                                           |    Services Mutualisés    |
+|  EXI-ARCH-11 (Pi-native)  | **P**    |                                                                                                                                                                                                  Identification utilisateur : l’application doit obligatoirement utiliser le SSO Agent disponible et/ou France connect pour les citoyens                                                                                                                                                                                                  |        Architecture       |
+|  EXI-ARCH-21 (Pi-native)  | I        |                                                                                                                                                                                 L’application est conçue pour un déploiement en continu, la conception du modèle de données permet à la version future et l’actuelle de coexister sans impact fonctionnel.                                                                                                                                                                                |        Architecture       |
+|   EXI-DATA-2 (Pi-native)  | **P**    |                                                                                                                                       Pour la persistance de données personnelles soumises au RGPD, le modèle de données intègre dès la conception, un tag RGPD, des champs dupliqués dédiés à l’anonymisation et des règles et processus d’anonymisation ainsi qu’une politique de droits associés.                                                                                                                                      |          Données          |
+|   EXI-DATA-3 (Pi-native)  | I        |                                                                                                                                                                                                                                     Consommation systématique des données de référence ministérielles                                                                                                                                                                                                                                     |          Données          |
+|   EXI-DATA-4 (Pi-native)  | I        |                                                                                                                                                                                                                                   Référencement des objets métiers dans le catalogue des données métiers                                                                                                                                                                                                                                  |          Données          |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|                           |          |                                                                                                                                                                                                                                                                 zdzezeerz                                                                                                                                                                                                                                                                 |                           |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
+|                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
