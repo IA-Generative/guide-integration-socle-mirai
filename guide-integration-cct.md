@@ -10,21 +10,17 @@
 
  ****
 
-\
-\
-
-
-**Version :** en cours d’initialisation
+**Version : VERSION EN COURS D’ELABORATION**
 
 **Date :** 10/03/2025
 
 **Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur et des Outre-Mer.
 
-\
-\
-\
-\
+**VERSION EN COURS D’ELABORATION**
 
+**VERSION EN COURS D’ELABORATION**
+
+**VERSION EN COURS D’ELABORATION**
 
 **A propos de l’appel à commentaire de ce document.**
 
@@ -44,99 +40,56 @@ Vous pouvez remonter vos commentaires et suggestions sur ce document de plusieur
 
 - 2/ enregistrer des issues dans github
 
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+**VERSION EN COURS D’ELABORATION**
 
+**VERSION EN COURS D’ELABORATION**
+
+**VERSION EN COURS D’ELABORATION**
 
 TABLE DES MATIÈRES
 
-\
-\
-\
-
-
 [**1 - Introduction ****5**](#1---introduction)
 
-[**2 - Le contexte, les enjeux, la vision ****6**](#2---le-contexte-les-enjeux-la-vision)
+[**2 - Le contexte, les enjeux, la vision ****5**](#2---le-contexte-les-enjeux-la-vision)
 
-[3 - Principes généraux cadre Cloud Native 9](#3---principes-généraux-de-mirai)
+[3 - Principes généraux de MirAi 5](#3---principes-généraux-de-mirai)
 
-[Périmètres du CCT et configurations prises en compte 10](#périmètres-du-document-et-configurations-prises-en-compte)
+[Périmètres du document et configurations prises en compte 6](#périmètres-du-document-et-configurations-prises-en-compte)
 
-[Gestion des non-conformités, dérogations et contribution 11](#gestion-des-non-conformités-dérogations-et-contribution)
+[Gestion des non-conformités, dérogations et contribution 6](#gestion-des-non-conformités-dérogations-et-contribution)
 
-[Le modèle organisationnel, de responsabilité et de collaboration Cloud Native 12](#le-modèle-organisationnel-de-responsabilité-et-de-collaboration-cloud-native)
+[Le modèle organisationnel, de responsabilité et de collaboration Cloud Native 7](#le-modèle-organisationnel-de-responsabilité-et-de-collaboration-autour-de-mirai)
 
-[Préconisations générales d’architecture et technique 17](#préconisations-générales-darchitecture-et-technique)
+[Préconisations générales d’architecture et technique 12](#préconisations-générales-darchitecture-et-technique)
 
-[Des spécificités à prendre en compte sur la création des conteneurs 18](#spécificités-à-prendre-en-compte-sur-la-création-des-applications-devant-sintégrer-dans-le-cadre-du-socle-mirai)
+[Spécificités à prendre en compte sur la création des applications devant s’intégrer dans le cadre du socle Mirai. 12](#modèle-dapplication-dans-le-cadre-de-développement-de-services)
 
-[Des spécificités à prendre en compte sur la topologie réseau et les ouvertures de flux 19](https://docs.google.com/document/d/1cSOWtKtzyFd3NtcUtwXcc_U_M6GlziLRyGE5yRXiJvc/edit#heading=h.pg8h6fjyikn3)
+[Spécificités à prendre en compte sur la topologie réseau et les ouvertures de flux 12](https://docs.google.com/document/d/1cSOWtKtzyFd3NtcUtwXcc_U_M6GlziLRyGE5yRXiJvc/edit?tab=t.0#heading=h.thmlhyeyb8th)
 
-[Des spécificités à prendre en compte autour de la qualité et de la sécurité des applications 19](#spécificités-à-prendre-en-compte-autour-de-la-qualité-et-de-la-sécurité-des-applications)
+[Spécificités à prendre en compte autour de la qualité et de la sécurité des applications 12](#spécificités-à-prendre-en-compte-autour-de-la-qualité-et-de-la-sécurité-des-applications)
 
-[Modèle d’intégration d’une application dans le cadre Cloud Native 20](#modèle-dintégration-dune-application-dans-le-cadre-de-mira)
+[Modèle d’intégration d’une application dans le cadre de Mira 13](#modèle-dintégration-dune-application-dans-le-cadre-de-mira)
 
-[**4 - Présentation de l’offre interMinistérielle Cloud Pi Native et de ses évolutions pressenties ****21**](#4---présentation-du-socle-mirai-ses-évolutions-pressenties)
+[**4 - Présentation du socle MirAI ses évolutions pressenties ****13**](#4---présentation-du-socle-mirai-ses-évolutions-pressenties)
 
-[Les magasins de composants kubernetes et d’image de base 22](#les-magasins-de-composants-kubernetes-et-dimage-de-base)
+[Les magasins de composants kubernetes et d’image de base 14](#les-magasins-de-composants-kubernetes-et-dimage-de-base)
 
-[**6 - Introduction à l’offre de service du ministère ****23**](#6---introduction-à-loffre-de-service-du-ministère)
+[**6 - Introduction à l’offre de service du ministère ****15**](#6---introduction-à-loffre-de-service-du-ministère)
 
-[**5 - Référentiel d’exigences et modalités d'usage ****24**](#5---référentiel-dexigences-et-modalités-dusage)
+[**5 - Référentiel d’exigences et modalités d'usage ****15**](#5---référentiel-dexigences-et-modalités-dusage)
 
-[**6 -  Annexes ****26**](#6---annexes)
+[**6 -  Annexes ****16**](#6---annexes)
 
-[Les normes industrielles, institutionnelles applicables 26](#les-normes-industrielles-institutionnelles-applicables)
+[Les normes industrielles, institutionnelles applicables 16](#les-normes-industrielles-institutionnelles-applicables)
 
-[Liens vers autres contenus utiles(informatif) 27](#liens-vers-autres-contenus-utilesinformatif)
+[Liens vers autres contenus utiles(informatif) 17](#liens-vers-autres-contenus-utilesinformatif)
 
-[Glossaire 28](#glossaire)
+[Glossaire 18](#glossaire)
 
-[**7 - Référentiel d’exigences applicables au CCT Cloud Pi Native ****37**](#7---référentiel-dexigences-applicables-aux-applications-mirai)
+[**7 - Référentiel d’exigences applicables aux applications Mirai ****27**](#7---référentiel-dexigences-applicables-aux-applications-mirai)
 
 
 ##
-
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-
 
 \--- page vide ---
 
@@ -163,22 +116,23 @@ Ce document et les ressources associées à pour objectif de : 
 
 - Prendre en compte les spécificités liés fluidifier les déploiement, l’homologation en continu, le maintien en qualité ;
 
--
+- De favoriser la conformité _by design_ sur la sécurité, la protection et circulation de la données, l’éthique et in fine l’IA-ACT.
 
 - mettre en place un modèle de responsabilité et de collaboration adapté ;
 
-- disposer d’une trajectoire soutenable pour ceux en charge de maintenir l’offre.
+- disposer d’une trajectoire soutenable pour ceux en charge de maintenir les applications et les éléments du socle Mirai.
 
-Le lecteur est invité à vérifier qu’il dispose de la dernière version de ce document de présent ainsi que de la liste d’exigences.
+Le lecteur est invité à vérifier qu’il dispose de la dernière version de ce document de présent ainsi que de la liste d’exigences. contenu susceptible de changer régulièrement.
 
 
 # 2 - Le contexte, les enjeux, la vision 
 
 **Audience : ce paragraphe s’adresse à tout acteur considérant l’usage de l’offre Cloud Pi Native du ministère de l’intérieur, il présente les principes fondateurs. Le cloud : des nouvelles possibilités techniques, une collaboration étendue des acteurs pour répondre aux enjeux d’un contexte exigeant, incertain et accéléré.**
 
-\
+< à rediger >
 
 
+#
 
 # 3 - Principes généraux de MirAi 
 
@@ -187,9 +141,6 @@ Le lecteur est invité à vérifier qu’il dispose de la dernière version de c
 Ce document normalise les différents domaines associés à l’élaboration et au maintien des ressources partagées nécessaires à la mise à disposition de solutions numériques de qualité répondant au besoin. Il s’assure que l’ensemble peut-être mis en œuvre de manière cohérente avec une consommation minimisée des ressources : financière, RH et ecoresponsable tout en étant le plus conforme by design.
 
 Il recommande ou fixe les mesures permettant d’atteindre l’objectif, tout en favorisant l’innovation, la prise en compte de l’obsolescence régulière des technologies et la manœuvre RH nécessaire (formation continue, recrutement …)
-
-\
-
 
 
 ## Périmètres du document et configurations prises en compte
@@ -222,7 +173,7 @@ En cas de non-conformité aux exigences de ce document ou absence de contributio
 Lors de l’utilisation du cadre et de l’offre Cloud PI Native, toute organisation souhaitant décliner ce cadre dans un document de norme inférieur pour un besoin propre est invitée à référencer la dernière version de ce document en l’état.  Dans la hiérarchie des normes, une instruction de niveau inférieur ne peut entrer en conflit ou contredire ce présent document.
 
 
-## Le modèle organisationnel, de responsabilité et de collaboration Cloud Native
+## Le modèle organisationnel, de responsabilité et de collaboration autour de Mirai
 
 L’architecture, le modèle de responsabilité et d’organisation à mettre en place est orienté pour maximiser la qualité, la sécurité, la fluidité opérationnelle et l’évolutivité du produit en  tirant parti au maximum des possibilités offertes par la technologie kubernetes, un flux de production DevSecOps et une collaboration étendue entre les acteurs. 
 
@@ -344,12 +295,8 @@ Des pratiques complémentaires sont introduites :
 
 Le **“shift-left”** (vers la gauche du processus de développement) fait référence à la remontée le plus tôt possible vers le développeur des anomalies identifiées par la chaîne de déploiement et de vérification DevSecOps. Ce flux est notamment mis en œuvre depuis la chaîne secondaire.
 
-**Présentation du cycle d’usage de l’offre pour les directions d’applications:**
+< ajouter les pratiques liées à l’IA> 
 
-**Phase d’initialisation du projet**
-
-
-##
 
 ## Préconisations générales d’architecture et technique
 
@@ -359,16 +306,14 @@ C’est le respect de ces normes qui permet à la fois d’adresser les enjeux d
 
 Un des principes cœurs est de laisser un certain degré de liberté au concepteur/développeur sur le fonctionnement interne de son application. Au contraire, les intéractions avec les autres applications et services seront particulièrement contraintes.
 
-\
 
+## Modèle d’architecture logique du socle Mirai
 
+##
 
-## Spécificités à prendre en compte sur la création des applications devant s’intégrer dans le cadre du socle Mirai.
+## Modèle d’application dans le cadre de développement de services
 
-## Spécificités à prendre en compte sur la topologie réseau et les ouvertures de flux
-
-L’organisation de réseau est segmenté par type de service porté par le flux. ( flux usagers, interdatacenters, interapplicatifs ). Les flux réseau sont ouverts en lecture des manifests kubernetes / helms notamment Ingress et egress.
-
+##
 
 ## Spécificités à prendre en compte autour de la qualité et de la sécurité des applications
 
@@ -483,9 +428,6 @@ La conception de système d’information dans le cadre de l’État est encadr�
 | Référentiel Général de Gestion des Archives                                            | <https://francearchives.fr/fr/circulaire/R2GA_2013_10>                                                                                                                                                                                                                                                                                                                                                                                                     |
 | règlement européen sur la protection des données personnelles                          | <https://www.cnil.fr/fr/reglement-europeen-protection-donnees>                                                                                                                                                                                                                                                                                                                                                                                             |
 
-\
-
-
 
 ## Liens vers autres contenus utiles(informatif)
 
@@ -594,9 +536,6 @@ La documentation sur le CloudPI :
 | VPN              | Virtual Private Network, réseau privé virtuel (RPV) : Le principe du RPV consiste à créer un réseau privé au sein d'un réseau public. Cette démarche existe depuis longtemps : les opérateurs s'en servent pour gérer les lignes privées de leurs clients au sein des mêmes « tuyaux ». Aujourd'hui, on parle surtout de réseaux privés virtuels sur Internet. Les RPV mettent en œuvre des mécanismes de contrôle d'accès (authentification des utilisateurs) et assurent la confidentialité des données (cryptographie). Le terme de réseau privé virtuel s'applique aussi au réseau téléphonique : les opérateurs font ainsi transiter sur le réseau public des services évolués de téléphonie jusque-là cantonnés au réseau privé de l'entreprise appel en numérotant uniquement l'extension, renvoi d'appel, conversation à plusieurs, etc. Cette technologie s'étend aussi aux mobiles. |
 | Windows Server   | Windows Server est un système multi-tâches, multi-utilisateurs qui dans ses fonctionnalités peut se comparer au système UNIX/Linux. Il présente l’avantage que certains logiciels soient moins chers que leur équivalent fonctionnant sous UNIX, et plus rarement, Linux. Par ailleurs, la quasi-totalité des éditeurs propose des versions de leurs produits pouvant tourner sur serveur Windows.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 
-\
-
-
 \--- fin du document ---
 
 
@@ -605,9 +544,6 @@ La documentation sur le CloudPI :
 Note: le terme développeur est générique et fait référence à l’individu ou l’organisation pluridisciplinaire qui est chargée de produire et maintenir :  la base de code, le corpus de tests et les fichiers de description d’infrastructure et les documentation technique et usager. 
 
 Il est responsable de l'adéquation et de la qualité de la solution au besoin des usagers en collaborant de manières étendues avec les autres acteurs impliqués.
-
-\
-
 
 |                           |          |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                           |
 | :-----------------------: | -------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: |
