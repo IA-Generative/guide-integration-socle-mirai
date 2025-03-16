@@ -3,7 +3,7 @@
 
 **Date :** 17/03/2025
 
-**Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur et des Outre-Mer.
+**Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur.
 
 *Cette version RFC (request for comment) vous permet de proposer vos commentaires de plusieurs manières:*
 - faire des issues

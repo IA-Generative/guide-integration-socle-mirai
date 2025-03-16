@@ -5,6 +5,8 @@
 
 **Date :** 10/03/2025
 
+**Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur.
+
 **Appel à commentaire de ce document.**
 
 Cette version RFC (request for comment) vous permet de proposer vos commentaires de plusieurs manières:

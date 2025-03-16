@@ -4,14 +4,15 @@
 
 **Date :** 17/03/2025
 
-**Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur et des Outre-Mer.
+**Auteur :** Direction de la transformation numérique du Ministère de l’Intérieur.
 
 
-Cette version RFC (request for comment) vous permet de proposer vos commentaires de plusieurs manières:
+*Cette version RFC (request for comment) vous permet de proposer vos commentaires de plusieurs manières:*
 - faire des issues
 - utiliser le fichier de relecture proposé
 [Fichier pour commentaires](./gabarit-pour-commentaires.ods)
  et l’envoyer à : [dnum-architecture-entreprise@interieur.gouv.fr](mailto:dnum-architecture-entreprise@interieur.gouv.fr)
+
 ## Les normes industrielles, institutionnelles applicables<a id="les-normes-industrielles-institutionnelles-applicables"></a>
 
 La conception de système d’information dans le cadre de l’État est encadrée par un ensemble de recommandations ou règles à mettre en œuvre.  Ces normes sont citées ci-dessous. Le lecteur est invité à vérifier qu’il dispose des versions les plus à jour.
