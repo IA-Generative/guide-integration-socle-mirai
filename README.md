@@ -1,4 +1,4 @@
-# Cadre de Cohérence Technique (CCT) du socle d’IA et  Guide d’intégration *“Socle MIRAI“*
+# Cadre de Cohérence Technique (CCT) du socle d’IA et  Guide d’intégration *socle "MIRAI“*
 
 
 ***Version : VERSION EN COURS D’ELABORATION***
