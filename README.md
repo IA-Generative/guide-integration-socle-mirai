@@ -74,3 +74,4 @@ Les  différents documents qui constituent le cadre de cohérence technique Mira
 * [Lien vers la liste des exigences associées au CCT](./cct-exigences.md)
 * [Lien vers le glossaire](./cct-glossaire.md)
 
+[^1]: `Mirai ( MI - r - AI ) signifie futur en japonais` [lien](https://www.dictionnaire-japonais.com/w/3126/%E6%9C%AA%E6%9D%A5)
