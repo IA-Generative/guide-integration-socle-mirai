@@ -8,7 +8,7 @@
 *Cette version RFC (request for comment) vous permet de proposer vos commentaires de plusieurs manières:*
 - faire des issues
 - utiliser le fichier de relecture proposé
-[Fichier pour commentaires](./gabarit-pour-commentaires.ods)
+[Fichier pour commentaires](https://github.com/cloud-pi-native/cct-cloud-native/blob/main/gabarit-pour-commentaires.ods)
  et l’envoyer à : [dnum-architecture-entreprise@interieur.gouv.fr](mailto:dnum-architecture-entreprise@interieur.gouv.fr)
 
 # Guide d'intégration

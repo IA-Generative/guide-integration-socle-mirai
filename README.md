@@ -10,7 +10,8 @@
 **Appel à commentaire de ce document.**
 
 Cette version RFC (request for comment) vous permet de proposer vos commentaires de plusieurs manières:
-* 1/ utiliser le fichier de relecture proposé [Fichier pour commentaires](https://github.com/dnum-mi/CCT-Cloud-Native/blob/main/gabarit-pour-commentaires.ods):  
+
+* 1/ utiliser le fichier de relecture proposé [Fichier pour commentaires](Le cadre de cohérence technique : <https://github.com/cloud-pi-native/cct-cloud-native/blob/main/gabarit-pour-commentaires.ods>):  
   * <https://github.com/dnum-mi/CCT-Cloud-Native/blob/main/gabarit-pour-commentaires.ods>  
   * et l’envoyer à : [dnum-architecture-entreprise@interieur.gouv.fr](mailto:dnum-architecture-entreprise@interieur.gouv.fr)  
 * 2/ enregistrer des issues dans github
