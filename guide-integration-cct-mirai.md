@@ -72,7 +72,7 @@ Il favorise que l’ensemble peut-être mis en œuvre de manière cohérente ave
 
 Il recommande ou fixe les mesures permettant d’atteindre l’objectif, tout en favorisant l’innovation, la prise en compte de l’obsolescence régulière des technologies et la manœuvre RH nécessaire (formation continue, recrutement …)
 
-Les applications basées sur les réseaux de neurones, dont l’IA générative peuvent nécessiter l’accès à une ressource scalable de calcul haute performance (HPC) incluant des accélérateurs de traitement simultané de données en masse (GPU).[^2] 
+Les applications basées sur les réseaux de neurones, dont l’IA générative peuvent nécessiter l’accès à une ressource scalable de calcul haute performance (HPC) incluant des accélérateurs de traitement simultané de données en masse (GPU).[^2]
 Ces ressources consomment plus de ressource énergétique qu’une infrastructure classique pour permettre l’accélération et le traitement de modèle d’IA large tel que les modèles de langage large (LLM[^3] ) pouvant atteindre des poids dépassant la centaine de gigaoctet.
 
 Il est essentiel de bien concevoir les solutions afin d’optimiser l’accès à ces ressources coûteuses, c’est l’objectif du socle MirAi, permettre de mutualiser ce qui peut l’être, sans freiner l’innovation et accélérer la réalisation des applications en leur proposant des services communs d’accélération.
@@ -316,6 +316,7 @@ L’équipe intégrée est invitée à mener une activité constante de refactor
 ## Modèle d’intégration d’une application dans le cadre de Mirai
 
 ![modèle intégration](images/processus-integration.png)
+
 La phase préparation et négociation des accès aux ressources consiste à mettre en place les convention d’usage des services du socle Mirai et Pi Native afin de fournir un premier modèle de coût et permettre à l’équipe d'architecturer efficacement l’application
 
 Les phases d’intégration et de mise en service correspondent aux activités classiques d’un produit / projet avec par exemple la mise en place des pipelines, mesure de la qualité, mise en place de l’observabilité et de l’alerting, sélection du modèle IA et des référentiels nécessaire, etc..
@@ -344,9 +345,8 @@ Précisions sur le cas de l’exclusion administrative (périmètre du Ministèr
 Par défaut les règles du CCT s’imposent. Elles peuvent être précisées dans le cas d’un appel d'offres dans le règlement de consultation pour le dépouillement des offres et dans le CCAP pour l’exécution du marché. Une demande de dérogation est possible. ( cf paragraphe ad hoc )
 
 ## Notes
-[^1]:  Mirai ( MI - r - AI ) signifie futur en japonais
-[^2]:  Mirai ( MI - r - AI ) signifie futur en japonais
-[^3]:  https://fr.wikipedia.org/wiki/Single_instruction_multiple_data
-[^4]:  https://fr.wikipedia.org/wiki/Grand_mod%C3%A8le_de_langage
-[^5]:  https://cloud.google.com/discover/what-are-ai-agents
-[^6]:  Le cadre Cloud Pi NAtive est disponible : https://github.com/cloud-pi-native/cct-cloud-native
+[^2]: `Mirai ( MI - r - AI ) signifie futur en japonais`
+[^3]: https://fr.wikipedia.org/wiki/Single_instruction_multiple_data
+[^4]: https://fr.wikipedia.org/wiki/Grand_mod%C3%A8le_de_langage
+[^5]: https://cloud.google.com/discover/what-are-ai-agents
+[^6]: Le cadre Cloud Pi NAtive est disponible : https://github.com/cloud-pi-native/cct-cloud-native
